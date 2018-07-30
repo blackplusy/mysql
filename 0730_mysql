@@ -1,0 +1,140 @@
+数据库
+python文件
+是数据持久化技术
+数据库也是持久化技术
+数据库可以理解成文件柜
+数据库就是数据的仓库
+数据是有有意义：
+对应3个概念:
+数据库
+表
+记录
+关系型数据库：表和表之间有联系mysql oracle 
+非关系型数据库：没有联系 no sql数据库 mongodb hive hbase
+数据库的设计
+QQ登录:二分 239888 10亿 5亿 240000 活动量 
+学会如何查数据
+DML 对数据库增、删 改 查
+DCL 权限
+DDL 建立
+# mysql -u username用户名  -p 密码 password -h host主机
+
+安装 apt install mysql-server
+mysql -u root -p
+输入密码:
+->
+
+建立数据库
+建立表  字段（特征) 姓名   年龄
+        记录        XXXX   12
+数据类型:数值型  整数 int(4) 小数 decimal(5,2)长度5,小数位是2
+字符串 用单引号 varchar
+开发的时候，单引号里面还需要引号，就用双引
+日期型 date time datetime
+NULL 值
+定义表的时候，定义自增长:auto_increment
+NOT NULL 非空
+DEFAULT 不输入有默认值
+char定长
+一个汉字等于2个英文字符  8
+存图片，只存路径
+时间戳:1970 10 1 毫秒数 作用：判断同一时刻不同用户的点击(并发)
+
+数据库设计
+火车购票系统
+  需要的内容：
+	1、买票人：姓名 性别 身份证号 手机号 工作城市 籍贯（户口所在地） 常出差 积分 
+	2、票的管理：硬坐 硬卧 软卧 车次  始发时间 终到时间 中途站点 车厢编号 座位号 票价 打折 
+	3、联系 ： 定单号 身份证 车次
+	4、验票: 身份证 车次 时间
+ 自己考虑字段
+	show databases;查看原有数据库
+1、建立数据库 create database ming;
+	use ming;//打开数据库
+2、建立表 create table biao(字段)
+3、差如记录 insert into biao values() 
+4、查看：select * from biao
+简体中文 utf-8 GBK GB2312
+5、表格删除: drop table biao(表名)
+6、show tables;看一下数据库下面有什么表格
+7、删除一条记录:delete from biao where（条件)
+8、修改一条记录:update biao set 修改后的内容(id=5) where (条件)
+9、查 :select * from biao;
+10、删除数据库: drop database ming;
+default charset=utf8表格可以接受中文
+  E5十六进制 1111 1111  1111 1111 15
+
+	35=3*10+5
+	635=6*100+3*10+5
+	1111=1*2^3+1*2^2+1*2+1=8+4+2+1=15
+	0 --15
+	0-9 A B C D E F 
+		
+数据类型：
+	int
+	varchar
+	date		
+	int型查找
+		1、查20岁以上人
+			select * from student where age>=20
+		2、查20岁人
+			select * from student where age=20
+		3、查20到34之间的人
+			 
+                        0         20  中间都用and     34
+				两头用or
+			select * from student where age>20  and age <34
+		4、查20到34人都是谁
+			select name from student where age>20 and age<34
+			select name from student where age between 20 and 34
+			between and包含等于
+		5、查20岁以下 34岁以上的人姓名
+			select name from student where age<20   or  age>34
+			如果两头没有交集，or
+	varchar比较:
+		1、查“王字”这个人信息(100%匹配,精确查询)
+			select * from student where name='王字';
+		2、查姓“王"的人(模糊查询)
+			select * from student where name like '王%'
+			把所有的姓王的全部查出\
+			select * from student where name like '王_'
+			把所有姓王两个字的查出
+			_匹配一个
+			%匹配多个
+	date
+		
+		1、把2012年前出生全部查出
+			select * from student where yedar(birth)<2012
+		2、把2011年11月分出生的查出
+			select * from student where year(birth)<2011 or year(birth)=2011 and month(birth)<11
+			另一中:自己写一个时间 '2011-11-01'		
+			select * from student where birth<'2011-11-01'
+			时间型比较年月日全的，不全的year month day去取
+	分组:
+		按某个字段进行统计，常应用count()个数,sum()和，avg()平均数
+		然后可分组:	
+		也可以直接统计
+	order by排序 desc 降序排列  asc 升序排列
+	having
+		
+select * from student where age=19
+	age=19 where先执行 最后select
+如果 select * from student where age> (select avg(age) from student)
+子查询：
+having
+      select name from student group by name
+	是group带的条件子句，解决where条件先执行了
+select * from 表  where 条件  group by 字段（分组：相同的在一起) order by 排序(升序，降序) having 条件（分组统计之后的条件） limit 起始的索引（从0开始)，几条记录
+执行过程:
+	1、where 子句(统计函数起不了作用，或者子查询，或者分组）
+
+	2、group by
+	3、having
+	4、order by 
+	5、select 
+limit限制记录，实现分页，后台返回前台从哪条到那条
+
+	
+
+
+
