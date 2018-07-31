@@ -1,0 +1,23 @@
+（1）. 写出sql语句，查询所有年龄大于20岁的员工
+	select * from st where age>20
+（2）. 写出sql语句，查询所有年龄小于25岁的女性员工
+	select * from st where age<25 and sex='女'
+（3）. 写出sql语句，统计男女员工各有多少名
+	select sex,count(*) from st group by sex;
+（4）. 写出sql语句，按照年龄倒序获取员工信息
+	select * from st order by age desc
+（5）. 写出sql语句，获取员工中哪个姓名具有重名现象
+	select name,count(*) from st group by name having count(*)>1  
+	select z.name,z.a  from (select name,count(*) a from st group by name) z where z.a>1
+（6）. 写出sql语句，查询所有姓张的员工
+	select * from st where name like '张%'
+（7）. 写出sql语句，查询住址为北京的前3条记录
+	select * from st where address='北京' limit 3
+（8）. 写出sql语句，查询员工总数
+	select count(*) from st;
+（9）. 写出sql语句，向表中插入一条记录
+	insert into st values('刘以','女',23,'深圳');
+（10）.写出sql语句，修改员工张四的住址为南京
+	update st set address='南京' where name='张四'
+（11）.写出sql语句，删除年龄大于24岁的女员工
+	delete from st where age>24 and sex='女'
