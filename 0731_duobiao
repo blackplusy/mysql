@@ -1,0 +1,25 @@
+1. 查出至少有一个员工的部门。显示部门编号、部门名称、部门位置、部门人数。
+	只查一个员工的部门 select deptno,count(*) a from emp group by deptno having count(*)>1 (z);
+	select dept.*,z.a from dept,(select deptno,count(*) a from emp group by deptno having a>1) z where dept.deptno=z.deptno);
+2. 列出所有员工的姓名及其直接上级的姓名。
+	有两个emp表
+	select x.ename,y.ename from emp x,emp y where x.mgr=y.empno
+
+3. 列出受雇日期早于直接上级的所有员工的编号、姓名、部门名称。
+	select x.empno,x.ename,d.dname from emp x,emp y,dept d where x.mgr=y.empno and x.hiredata<y.hiredata and x.deptno=d.deptno
+	select z.a,z.b,dept.dname from dept,(select x.empno a,x.ename b,x.deptno c from emp.x,emp.y where x.mgr=y.empno and x.hiredata<y.hiredata) z where z.c=dept.deptno;
+
+4. 列出部门名称和这些部门的员工信息，同时列出那些没有员工的部门。
+	
+5. 列出最低薪金大于15000的各种工作及从事此工作的员工人数。
+	
+
+6. 列出在销售部工作的员工的姓名，假定不知道销售部的部门编号。
+	
+
+7. 列出薪金高于公司平均薪金的所有员工信息，所在部门名称，上级领导，工资等级。
+	薪金高于公司平均薪金的所有员工信息 :select * from emp where sal>(select avg(sal) from emp)
+	select x.*,d.dname,y.ename,s.grade from emp x,dept d,emp y,sal s
+8.列出与庞统从事相同工作的所有员工及部门名称。
+	
+9.列出薪金高于部门30工作的所有员工的薪金的员工姓名和薪金、部门名称。
