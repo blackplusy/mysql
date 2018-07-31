@@ -1,0 +1,53 @@
+数据库
+	关系数据库 mysql
+	数据库 表 记录 字段
+	建数据库：create database
+	建表  create table
+	增 insert into
+	删 delete
+	改 update set
+	查 select * from biao where 条件 group by 字段 having 条件  order by (asc,desc) limit
+	单表操作
+	约束条件
+		not null 非空
+		primary key 主键（表征数据的唯一性.每个表都需要主键）
+		auto_increment自增长
+		default null
+	数据库的引擎：存储方式： myisam默认  innodb比myisam安全
+		engine=innodb
+	insert into 表名（字段1,字段2） values(字段1的值，字段2的值)
+	电商：address phone 
+	多表：
+		学籍表：学号 姓名 性别 住址  电话
+		成绩表：学号 英语 语文 数学
+	select database();当前操作的数据库是哪一个
+	select user();当前操作的用户
+	(1)查询学生成绩，有学生名字
+		select 表1.字段,表2.字段 from 表1,表2 where 表1.字段1=表2.字段1
+		select scores.*,xueji.name from scores,xueji where scores.id=xueji.stuno
+	(2)查询不及格的学生姓名
+		select xueji.name from scores,xueji where scores.id=xueji.stuno and  scores.english<60 or   scores.math<60   or scores.chinese<60
+	(3)查询平均成绩不及格nnnn
+		select xueji.name from scores,xueji where scores.id=xueji.stuno   and
+		(scores.english+scores.math+scores.chinese)/3<60
+	python连接数据库：
+		
+		import pymysql #mysql连接模块
+		conn=pymysql.connect(host:mysql主机名，port:mysql默认3306,user:mysql登录用户,password:mysql用户登录密码，db:数据库,charset:编码字符集)
+		游标:cursor()方法
+		cur.execute执行sql语句
+		当我们用程序来进行数据库操作，往往一些增删改查反复使用，如果出现运行问题，导致某些操作未生效，但前面有操作生效，数据库就乱了，所以引入事务概念。事务是当所有对数据库操作结束再进行修改。如果操作失败，有rollback()方法可以回滚，回滚指恢复事务开始的状态。比如：转账。commit()提交事务的方法。
+		作业: 单表：超市管理系统
+			1   2  3     4
+			1添加商品
+			2删除商品
+			3修改商品
+			4显示商品
+			5登录
+			6退出
+		 
+		
+		
+
+	mysql常用端口号:3306
+		
