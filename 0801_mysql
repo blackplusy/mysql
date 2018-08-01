@@ -1,0 +1,81 @@
+连接
+	以哪一个表为主表，主表数据全部展示，附表跟着主表的关系键（deptno)有空为空，有数据展示数据.
+	理论：笛卡尔积[1,2,3,5,6]  [1,2,4,5,6]两个集合每个元素都匹配
+	左连接 以左表为主,
+	右连接 以有表为主
+	连接的写法
+	换掉where
+	left join  on 
+	right join on 
+统计函数:
+	max最大
+	min最小
+	avg平均数
+	sum和
+	count个数
+where子句：
+	id=(select id from a)
+	一个=一个
+	(select id from a)多个,表
+		from 
+	select connection_id()查看当前操作的id
+mysql线程
+	同时写入。
+	锁机制
+	myisam表锁 innodb行锁
+	表锁
+	lock table 表名 级别(write/read)
+	unlock tables
+	show processlist显示数据库进程列表
+	表如果表锁，其他进程不能对其操作
+		但; read锁，可以select ,不能insert update delete
+		write锁,不能select ,insert ,update,delete
+	行锁：解决update,delete 条件：innodb 必须id
+	set autocommit=0不能自动提交 
+	锁 select * from 表  for update
+	释放 set autocommit=1
+	
+python结合pymysql做程序，注意sql语句，有的地方加引号
+	mysql注入攻击
+	select * from denglu where username="lllll" and password="%s"
+	password="%s" password="( 1" or "1"="1 )"
+	select * from denglu where username="lllll" and password="1" or "1"="1"
+	防 preparestatement 预处理
+	原:sql=select * from denglu where username="%s" and password="%s"%(name,pwd)
+	sql=select * from denglu where username="%s" and passoword="%s",(name,pwd)
+	select * from denglu where username=%s and password=%s
+	提醒：写sql语句，服务器执行用prepar
+
+	try:
+		conn.commit()
+	except Exception as e:
+		conn.rollback()
+	当数据库错误时，回滚
+mysql过程:
+	改变mysql分隔符
+	delimiter //
+	create procedure 过程名()
+		begin
+			语句;
+		end
+	执行过程用 call 过程名
+	delimiter ;
+mysql函数:
+	abs绝对值
+	floor向下取整
+	ceiling向上取整
+	round四舍五入
+	字符串
+	concat连接
+	trim去空格
+	substring(串，位数，个数)
+
+
+
+	
+	
+	
+
+
+
+
