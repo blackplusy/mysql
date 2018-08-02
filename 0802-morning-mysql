@@ -1,0 +1,69 @@
+mongodb数据库
+	非关系型数据库 独立  设计
+	网络上常见是key-value值对
+	优势：引用型数据库  嵌入式数据  key-value
+	{"a":1,"b":2,"c":1,"d":{"a":1}}
+	设计: key值
+	student {'id':1,'name':'xxx','age':12,'address':'xxxxx'}
+	scores  {'id':1,'name':'xxx',english:90}
+	微信:
+	{'name','xxx','blo1':' 'guanzhu':'weixin'}
+	{'name':'kk'
+	{id:'mm_kk'
+	mm
+	kk
+	key值的设计上，往往不是简单的描述特征，关联性特征的串 例如 'wodeweixin_duifangweixin_0802' python字典
+	
+	表 关系型数据库(字段：记录)
+	集合 非关系型{值对}key-value
+	非关系型数据库也叫no sql数据库
+mongodb
+	
+	apt install mongodb
+	mongod 服务器程序
+		--dbpath数据存放在哪里
+		--logpath存放日志的地方 a.log存放日志的文件
+		mongod --dbpath /usr/mongo/data --logpath /usr/mongo/log/a.log
+	mongo客户端程序
+		mongo进入mongodb操作界面
+		use config建立config数据库
+		刚建的数据库大小为0，不会显示出来
+		显示数据库 show dbs
+		db显示在哪一个数据库操作
+		（collection是集合的意思）
+		WriteResult({ "nInserted" : 1 })是操作成功
+		db.table1.insert({name:'lili'})插入
+		插入方法：db.[集合名].insert({[key]:[value]})  []是能替换的
+	查找 db.[集合名].find()全部显示
+		（符号错了...）
+		查询: age=26
+		db.tabel1.find({age:26})
+		      age>20  $gt大于 $lt 小于 $gte大于等于 $lte 小于等于
+		db.tabel1.find({age:{"$gte":20}})
+			$and $or 
+		db.tabel1.find({"$and":[{"age":{"$gt":17}},{"age":{"$lt":27}}]})
+	删除:	remove	
+		db.tabel1.remove({"name":"hehe"})
+		db.[集合名].remover({[key]:[value]})
+	显示集合 show collections
+	修改:   update	
+		db.tabel1.update({"name":"keke"},{"$set":{"age":18}})
+		db.[集合名].update({[查key]:[查value]},{"$set":{[改key]:[改value]}})
+	退出mongo:quit()
+pymongo
+	python连接mongo模块
+	mongodb	默认端口:27017
+	mongodb连接 
+		import pymongo
+		conn=pymongo.MongoClient(host='localhost',port=27017)
+		连接上直接找数据库 config
+		coll=conn.config
+		对数据库的集合进行增删查改
+			增: coll.tabel1.insert({key:value})
+			删: coll.tabel1.remove({key:value})
+			查: coll.tabel1.find()
+			改：coll.tabel1.update({key:value})
+		
+	
+	
+
