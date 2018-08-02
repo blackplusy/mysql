@@ -1,0 +1,69 @@
+redis
+	mysql mongodb
+	原因：一台机器使用
+	公司租用服务器深圳，数据库建立好，支持软件开发就绪
+	公司扩大业务，业务到北京，服务器在深圳,出现北京客户访问深圳服务器，因为线路长，容易出现延时
+	数据库千万级记录，北京开服务器，影响客户几天，缓存服务器
+	第一次访问:数据库取出记录，第二次访问直接访问北京的缓存服务器
+	好处：1 不直接访问数据库，减少数据库的操作
+	      2 可以解决临时性的工作
+	redis非关系型的数据库 no sql
+	     mongodb key值
+	     redis关键集群，
+安装： redis-server
+	apt ubantu安linux软件
+	pip3  python装模块跟程序沟通
+	apt install redis-server
+	redis-server服务器
+	redis-client客户端
+	redis-server启动服务器
+	redis-cli启动客户端
+	redis默认端口号 6379
+	redis单线程
+	redis默认16个数据库 select 选择数据库 值从0开始
+	作用对数据存储
+	最基本：string
+		
+		set [key] [value] 在redis中设置键值
+		get [key] 在redis中取键值
+		keys *列出redis中所有的键值
+		del key 删除键值
+		应用场合：暂时存储变量值
+			一个key,一个值
+			denglu  1
+	其他几个类型
+		散列 (hash哈希) 0xfsdasdfasdjks(哈希值）地址 
+		hset [大key][小key] [value] 设计散列集合
+		hget [大key][小key]	    取出散列集合的值
+		hkeys [大key]   取出当前key所有散列小key
+		hvals[大key]  取出当前key所有散列value
+		hdel [大key] [小key] 删除大key下对应的小key值
+		应用场合：暂时存放对象
+		user:username password
+		cart:goodsname goodprice goodnum adress 
+		列表1,2,3,4
+		lpush [列表名] 列表值 向列表左边加数据
+		rpush [列表名] 列表值 向列表右边加数据
+		rpop  [列表名] 从列表右边删除元素
+		lpop [列表名] 从列表左边删除元素
+		lrange [列表名] 0 -1 查询全部
+		应用场合：存储列表
+	redis事务:
+		multi声明事务
+		exec操作
+		incr 把value加1
+		decr 把value减 1
+python连接redis
+	
+	pip3 install redis
+	from redis import Redis
+redis解决的是一个：1 减少与mysql直接练习
+		  2 对用户的状态做数据的存储，减少了代码上的重复，例如登录的案例
+练习：1、mysql数据库，redis缓存
+      2、mongo数据库,redis缓存
+      3、user存储成散列，hset('user','admin',1)
+	
+		
+	
+		
+		
