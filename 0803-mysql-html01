@@ -1,0 +1,52 @@
+前端HTML
+	全栈: （前端+后端） 前端：页面布局+特效（代码） 后端：代码
+	前端：html  css 页面  javascript 特效 (轮播，选项卡） 使用框架jquery,  vue
+	html:hyper text markup language 超文本标记语言（超文本指能进行超链接的文本）
+	html4 pc   目前html5 (H5)
+	html标记
+	linux web站 apache技术
+	apt install apache2
+	在浏览器输入localhost,显示it works!，apache2成功启动
+	网页的位置:/var/www/html/index.html
+	做网站，首页统一 index.html
+	html静态网页:跟数据库没有关系
+	动态网页:跟数据库有关系
+	区别：1、有无登录，注册，有-----动态
+	      2、网页数据是不是有实时更新  有-----动态
+	html解释型语言，不需要编译
+	
+	html基本结构：first.html
+		<html>html语言开始
+			<head>网页头部（标题栏，字体）理解为浏览器内容的上面
+				<meta charset='utf8'>设置网页的字体utf8
+				<title>我的网页</title>网页的标题
+			</head>
+			<body>网页内容部分
+				#这里就可以直接敲网页内容
+			</body>
+		</html>html语言结束
+		访问：http://localhost/first.html
+		地址栏：http(超文本传输协议)://域名:端口号/网页路径 web端口号80,默认80，不用写
+	html提供6个级别标题:
+		<h1> <h2> <h3> <h4> <h5> <h6>
+		图片：单标签<img src="图片的路径"/>
+		段落<p>文字</p>
+		设置字体：<font>里面3个属性:face = '字体名称'    color='颜色' # 6位 2位 红色 2位 绿色  2为 蓝色
+                                                               color='#dd dd dd"
+					   size= 0,1,2,3,4,5,6,7
+		图片的路径  <img src='a.png'/>
+			/var/www/html/pic/a.png绝对路径,不建议写
+			pic/a.png相对路径 服务器就是相对路径
+			http://www.bac.com/abc/a.png 绝对路径
+		链接 a
+			属性 href='网页的路径'
+		&nbsp空格
+		u下滑线
+		i倾斜
+		b加粗
+		<br/>换行
+		无序列表
+		ul li  圆点 type="circle"  方形 type="square"
+		有序列表
+		ol li  1 2 3 4 
+		
